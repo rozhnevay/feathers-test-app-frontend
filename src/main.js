@@ -28,7 +28,10 @@ store.dispatch('auth/authenticate')
     // Render the app
     .then((response) => {
       // eslint-disable-next-line no-new
-      store.commit('auth/setUser', response.user.email);
+      if (response && response.user) {
+          store.commit('auth/setUser', response.user.email);
+      }
+
       new Vue({
         router,
         store,
